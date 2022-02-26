@@ -1,5 +1,7 @@
 package org.cachescrubber.openapitools.demo.springbootjacksonoptionalnullable.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Instant;
 import java.util.Optional;
@@ -8,7 +10,8 @@ import javax.validation.constraints.Min;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
- * SImpke Model to demo usage of JsonNullable and Optional
+ * Simple Model to demo usage of JsonNullable and Optional
+ * Using: {@code @JsonInclude(Include.NON_ABSENT)}
  *
  * @author cachescrubber, 2022-02-20
  * @since 0.1.0
@@ -16,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 // for Intellij idea.
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-public class DemoModel {
+public class DemoModel2 {
 
   @JsonProperty("name")
   private String name;
@@ -28,9 +31,11 @@ public class DemoModel {
   private JsonNullable<@Email String> workEmail = JsonNullable.undefined();
 
   @JsonProperty("numberOfUsers")
+  @JsonInclude(Include.NON_ABSENT)
   private Optional<@Min(2) Integer> numberOfUsers = Optional.empty();
 
   @JsonProperty("lastLogin")
+  @JsonInclude(Include.NON_ABSENT)
   private Optional<Instant> lastLogin = Optional.empty();
 
   public String getName() {
@@ -41,7 +46,7 @@ public class DemoModel {
     this.name = name;
   }
 
-  public DemoModel name(String name) {
+  public DemoModel2 name(String name) {
     this.name = name;
     return this;
   }
@@ -74,12 +79,12 @@ public class DemoModel {
     this.numberOfUsers = Optional.ofNullable(numberOfUsers);
   }
 
-  public DemoModel numberOfUsers(Optional<Integer> numberOfUsers) {
+  public DemoModel2 numberOfUsers(Optional<Integer> numberOfUsers) {
     this.numberOfUsers = numberOfUsers;
     return this;
   }
 
-  public DemoModel numberOfUsers(Integer numberOfUsers) {
+  public DemoModel2 numberOfUsers(Integer numberOfUsers) {
     this.numberOfUsers = Optional.ofNullable(numberOfUsers);
     return this;
   }

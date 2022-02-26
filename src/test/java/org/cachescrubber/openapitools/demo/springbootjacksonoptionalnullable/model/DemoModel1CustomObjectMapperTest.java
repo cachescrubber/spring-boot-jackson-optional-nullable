@@ -10,16 +10,18 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class DemoModelTestSpringDefaultOm {
+@SpringBootTest(properties = {
+    "spring.jackson.default-property-inclusion=non_absent"
+})
+class DemoModel1CustomObjectMapperTest {
 
-  // use standard spring boot configured objectmapper
+  // use spring boot configured objectmapper
   @Autowired
   private ObjectMapper objectMapper;
 
   @Test
   void testSerialize() throws JsonProcessingException, JSONException {
-    DemoModel demoModel = new DemoModel();
+    DemoModel1 demoModel = new DemoModel1();
     demoModel.setName("Name");
 
     // JsonNullable: do not add property to json
@@ -32,16 +34,14 @@ class DemoModelTestSpringDefaultOm {
     demoModel.setNumberOfUsers(Optional.empty());
 
     // set the optional to null
-    demoModel.setLastLogin((Optional) null);
+    demoModel.setLastLogin(null);
 
-    String json = objectMapper.writerFor(DemoModel.class).writeValueAsString(demoModel);
+    String json = objectMapper.writerFor(DemoModel1.class).writeValueAsString(demoModel);
     System.out.println(json);
     JSONAssert.assertEquals("""
         {
           "name" : "Name",
-          "workEmail" : null,
-          "numberOfUsers" : null,
-          "lastLogin": null
+          "workEmail" : null
         }""", json, true);
   }
 

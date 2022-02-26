@@ -39,8 +39,11 @@ class DemoModel1DefaultObjectMapperTest {
     JSONAssert.assertEquals("""
         {
           "name" : "Name",
-          "workEmail" : null
-        }""", json, true);
+          "workEmail" : null,
+          "numberOfUsers" : null,
+          "lastLogin" : null
+        }
+        """, json, true);
   }
 
 }

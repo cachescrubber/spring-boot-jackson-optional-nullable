@@ -46,11 +46,6 @@ public class DemoModel2 {
     this.name = name;
   }
 
-  public DemoModel2 name(String name) {
-    this.name = name;
-    return this;
-  }
-
   public JsonNullable<String> getEmail() {
     return email;
   }
@@ -75,20 +70,6 @@ public class DemoModel2 {
     this.numberOfUsers = numberOfUsers;
   }
 
-  public void setNumberOfUsers(Integer numberOfUsers) {
-    this.numberOfUsers = Optional.ofNullable(numberOfUsers);
-  }
-
-  public DemoModel2 numberOfUsers(Optional<Integer> numberOfUsers) {
-    this.numberOfUsers = numberOfUsers;
-    return this;
-  }
-
-  public DemoModel2 numberOfUsers(Integer numberOfUsers) {
-    this.numberOfUsers = Optional.ofNullable(numberOfUsers);
-    return this;
-  }
-
   public Optional<Instant> getLastLogin() {
     return lastLogin;
   }
@@ -96,5 +77,4 @@ public class DemoModel2 {
   public void setLastLogin(Optional<Instant> lastLogin) {
     this.lastLogin = lastLogin;
   }
-
 }
